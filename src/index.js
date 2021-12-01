@@ -17,14 +17,14 @@ const Tasks = [
     completed: true,
     index: 1,
   },
-]
+];
 
-const tasks = document.querySelector('.tasks')
+const tasks = document.querySelector('.tasks');
 
 const displayTasks = () => {
-  Tasks.sort((a, b) => a.index - b.index)
+  Tasks.sort((a, b) => a.index - b.index);
   let taskHolder = '';
-  for (let i = 0; i < Tasks.length; i++) {
+  for (let i = 0; i < Tasks.length; i += 1) {
     taskHolder += `
     <li class="i-task">
       <span class="check">
@@ -35,11 +35,9 @@ const displayTasks = () => {
     </li>
     `;
   }
-  
   tasks.innerHTML = taskHolder;
-}
+};
 
 window.onload = () => {
-  displayTasks()
-}
-
+  displayTasks();
+};
