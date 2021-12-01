@@ -1,0 +1,123 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.tasks {
+  list-style: none;
+  width: 100%;
+}
+
+.tasks li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+label {
+  margin-left: 10px;
+}
+
+.todo-container {
+  width: 40%;
+  margin: 2rem auto;
+  border: 1px solid #fff;
+  box-shadow: 2px 2px 7px 7px #ddd;
+  transition: all 0.5s;
+}
+
+.todo-container:hover {
+  transform: translateY(4px);
+  box-shadow: 3px 3px 3px 3px #ccc;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  padding: 10px;
+}
+
+.bx {
+  color: rgb(177, 177, 177);
+}
+
+.heading h1 {
+  font-size: 1.2rem;
+}
+
+.heading .bx {
+  cursor: pointer;
+}
+
+.i-task .bx {
+  cursor: move;
+}
+
+button {
+  display: inline-block;
+  border: none;
+  background-color: rgb(243, 243, 243);
+  color: rgb(177, 177, 177);
+  font-size: 1rem;
+  transition: all 0.5s;
+}
+
+button:hover {
+  text-decoration: underline;
+  color: #000;
+  cursor: pointer;
+}
+
+.input {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input .bx {
+  height: 50.71px;
+  padding-top: 0.6em;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  padding-right: 10px;
+}
+
+.input .bx:hover {
+  cursor: pointer;
+}
+
+.add-task {
+  width: 100%;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  padding: 15px;
+  font-size: 1rem;
+}
+
+.add-task:focus {
+  outline: none;
+}
+
+.add-task::placeholder {
+  font-style: italic;
+}
+
+.check {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.complete-btn {
+  width: 100%;
+  text-align: center;
+  padding: 15px;
+  background-color: rgb(243, 243, 243);
+}
