@@ -4,7 +4,7 @@ To-Do is a web application that allows users
 * Remove completed tasks individually and collectively
 * Rearrage tasks on the list by means of drag and drop
 
-![To-Do](#)
+![To-Do](src/todo.png)
 
 ## Built With
 * HTML
@@ -13,17 +13,50 @@ To-Do is a web application that allows users
 * Webpack
 
 ## Live Demo
-* [Demo link](#)
+* [Demo link](https://charlesgobina.github.io/to-do/dist/)
+
+## System Requirements
+* Node.JS
+* npm
+* Code Editor
+* Git
+
+## Installation
+* Clone the repo using the command below
+
+```
+git clone git@github.com:charlesgobina/to-do.git
+```
+
+* Navigate to the directory in which you cloned the project and use the command below
+
+```
+cd to-do
+```
+
+* Install all project dependencies and packages using the command below
+
+```
+npm install
+```
+
+* Build the project using the command below
+
+```
+npm run build
+```
+
+* Start the server to run the application locally using the command below
+
+```
+npm start
+```
 
 ## Authors
 Charles Gobina :student: 
 * Github:https://github.com/charlesgobina 
 * Twitter:https://twitter.com/i4mCloud
 * LinkedIn:https://www.linkedin.com/in/charles-gobina-74a0ab193/
-
-## Software requirements
-* Git
-* Code Editor
 
 ## Contributing :handshake:
 Contributions, issues, and feature requests are welcome!
