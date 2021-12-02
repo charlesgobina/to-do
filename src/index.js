@@ -1,13 +1,12 @@
 import './style.css';
 import 'boxicons';
-import Tasks from './fucntions';
+import Tasks from './fucntions.js';
 
 const task = new Tasks();
 
 function displayTasks() {
   const tasks = document.querySelector('.tasks');
   task.taskList = JSON.parse(localStorage.getItem('Tasks'));
-  console.log(task.taskList)
   task.taskList.sort((a, b) => a.index - b.index);
   let taskHolder = '';
   for (let i = 0; i < task.taskList.length; i += 1) {
@@ -21,37 +20,24 @@ function displayTasks() {
     </li>
     `;
   }
-    tasks.innerHTML = taskHolder;
-};
-
-// function add() {
-//   const addOn = document.querySelector('#enter');
-//   addOn.addEventListener('click', (e) => {
-//     const inputTask = document.querySelector('.add-task');
-//     task.id = Math.floor(Math.random() * 1000000);
-//     task.description = inputTask.value;
-//     task.completed = false;
-//     task.addTask()
-//     localStorage.setItem('Tasks', JSON.stringify(task.taskList));
-//     inputTask.value = '';
-//     displayTasks();
-//   });
-// } 
-
+  tasks.innerHTML = taskHolder;
+}
 
 function loadUncheckedData() {
   task.taskList = JSON.parse(localStorage.getItem('Tasks'));
   let item = document.querySelectorAll('#choke');
   item = Array.from(item);
   item.forEach((check) => {
+    let checkId = check.dataset.id;
+    checkId = Number(checkId);
     for (let i = 0; i < task.taskList.length; i += 1) {
-      if (check.dataset.id == task.taskList[i].index) {
+      if (checkId === task.taskList[i].index) {
         if (task.taskList[i].completed === true) {
           check.checked = true;
         }
       }
     }
-  })
+  });
 }
 
 function loadCrossed() {
@@ -59,8 +45,10 @@ function loadCrossed() {
   let mylo = document.querySelectorAll('.mylo');
   mylo = Array.from(mylo);
   mylo.forEach((mile) => {
+    let mileId = mile.dataset.id;
+    mileId = Number(mileId);
     for (let i = 0; i < task.taskList.length; i += 1) {
-      if (mile.dataset.id == task.taskList[i].index) {
+      if (mileId === task.taskList[i].index) {
         if (task.taskList[i].completed === true) {
           mile.classList.add('crossed');
         } else {
@@ -69,58 +57,53 @@ function loadCrossed() {
       }
     }
   });
-
 }
-
 
 function change() {
   task.taskList = JSON.parse(localStorage.getItem('Tasks'));
   const checky = document.querySelectorAll('#choke');
   checky.forEach((check) => {
-    let checkId = check.dataset.id
-    let mylo = document.querySelectorAll('.mylo');
-    check.addEventListener('change', (e) => {
-      console.log(e)
-      if(check.checked) {
+    let checkId = check.dataset.id;
+    checkId = Number(checkId);
+    const mylo = document.querySelectorAll('.mylo');
+    check.addEventListener('change', () => {
+      if (check.checked) {
         for (let i = 0; i < task.taskList.length; i += 1) {
-          if (task.taskList[i].index == checkId) {
-            if (task.taskList[i].completed == false) {
-              task.taskList[i].completed = true
+          if (task.taskList[i].index === checkId) {
+            if (task.taskList[i].completed === false) {
+              task.taskList[i].completed = true;
               mylo.forEach((mile) => {
                 if (mile.innerText === task.taskList[i].description) {
                   mile.classList.add('crossed');
                 }
-              })
+              });
               localStorage.setItem('Tasks', JSON.stringify(task.taskList));
-              console.log(task.taskList[i])
             }
           }
         }
       } else {
         for (let i = 0; i < task.taskList.length; i += 1) {
-          if (task.taskList[i].index == checkId) {
-            task.taskList[i].completed = false
+          if (task.taskList[i].index === checkId) {
+            task.taskList[i].completed = false;
             mylo.forEach((mile) => {
               if (mile.innerText === task.taskList[i].description) {
                 if (mile.classList.contains('crossed')) {
-                  mile.classList.remove('crossed')
+                  mile.classList.remove('crossed');
                 }
               }
-            })
+            });
             localStorage.setItem('Tasks', JSON.stringify(task.taskList));
-            console.log(task.taskList[i])
           }
         }
       }
-    })
-  })
+    });
+  });
 }
 
-
 window.onload = () => {
-  task.setStorage()
-  displayTasks()
-  change()
-  loadUncheckedData()
-  loadCrossed()
+  task.setStorage();
+  displayTasks();
+  change();
+  loadUncheckedData();
+  loadCrossed();
 };
