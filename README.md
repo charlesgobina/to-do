@@ -12,9 +12,6 @@ To-Do is a web application that allows users
 * JS
 * Webpack
 
-## Live Demo
-* [Demo link](https://charlesgobina.github.io/to-do/dist/)
-
 ## System Requirements
 * Node.JS
 * npm
