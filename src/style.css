@@ -41,6 +41,10 @@ label {
   padding: 10px;
 }
 
+.mylo.crossed {
+  text-decoration: line-through;
+}
+
 .bx {
   color: rgb(177, 177, 177);
 }
