@@ -171,6 +171,7 @@ function deleteSingleTask() {
     suprimeurId = Number(suprimeurId);
     del.addEventListener('click', () => {
       task.deleteSingleItem(suprimeurId);
+      orderingTasks();
       displayTasks();
       window.location.reload();
     });
