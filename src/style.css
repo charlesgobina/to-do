@@ -27,7 +27,7 @@
   border-right: none;
   padding: 10px 0;
   font-size: 1rem;
-  transition: all 0.5s
+  transition: all 0.5s;
 }
 
 .todo-container {
@@ -65,7 +65,7 @@
 }
 
 #enter {
-  background-color: #fff
+  background-color: #fff;
 }
 
 .bx {
