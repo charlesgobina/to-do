@@ -100,37 +100,14 @@ function changeToMove() {
     teta.forEach((tet) => {
       let tetID = tet.dataset.id;
       tetID = Number(tetID);
-      omi.addEventListener('click', () => {
+      omi.addEventListener('focusin', () => {
         if (omiId === tetID) {
           tet.style.display = 'none';
         }
       });
-      omi.addEventListener('change', () => {
+      omi.addEventListener('focusout', () => {
         if (omiId === tetID) {
           tet.style.display = 'block';
-        }
-      });
-    });
-  });
-}
-
-function changeToTrash() {
-  const delta = document.querySelectorAll('#trash');
-  const omega = document.querySelectorAll('.edy');
-  omega.forEach((omi) => {
-    let omiId = omi.dataset.id;
-    omiId = Number(omiId);
-    delta.forEach((del) => {
-      let delID = del.dataset.id;
-      delID = Number(delID);
-      omi.addEventListener('click', () => {
-        if (omiId === delID) {
-          del.style.display = 'block';
-        }
-      });
-      omi.addEventListener('change', () => {
-        if (omiId === delID) {
-          del.style.display = 'none';
         }
       });
     });
@@ -146,13 +123,15 @@ function displayTasks() {
     taskHolder += `
     <li class="i-task">
       <span class="check">
+        <label hidden>Completed Status</label>
         <input data-id="${task.taskList[i].index}" id="choke" type="checkbox">
+        <label hidden>Enter Task</label>
         <input id="for-update" class="edy mylo" data-id="${task.taskList[i].index}" type="text" value="${task.taskList[i].description}">
       </span>
       <form>
       </form>
       <i data-id="${task.taskList[i].index}" class='bx bx-dots-vertical-rounded bx-sm'id="move"></i>
-      <button type="button" class="del" data-id="${task.taskList[i].index}" id="trash" ><i class='bx bx-trash bx-sm'></i></button>
+      <button aria-label="Delete task" type="button" class="del" data-id="${task.taskList[i].index}" id="trash" ><i class='bx bx-trash bx-sm'></i></button>
     </li>
     `;
   }
@@ -160,20 +139,55 @@ function displayTasks() {
   change();
   loadcheckedData();
   loadCrossed();
+  // eslint-disable-next-line no-use-before-define
+  deleteSingleTask();
   tasks.innerHTML = taskHolder;
 }
 
 function deleteSingleTask() {
   let delta = document.querySelectorAll('#trash');
   delta = Array.from(delta);
-  delta.forEach((del) => {
-    let suprimeurId = del.dataset.id;
+  for (let i = 0; i < delta.length; i += 1) {
+    let suprimeurId = delta[i].dataset.id;
     suprimeurId = Number(suprimeurId);
-    del.addEventListener('click', () => {
+    delta[i].addEventListener('click', () => {
       task.deleteSingleItem(suprimeurId);
-      orderingTasks();
       displayTasks();
-      window.location.reload();
+      changeToMove();
+      // eslint-disable-next-line no-use-before-define
+      changeToTrash();
+    });
+  }
+}
+
+function changeToTrash() {
+  const delta = document.querySelectorAll('#trash');
+  const omega = document.querySelectorAll('.edy');
+  omega.forEach((omi) => {
+    let omiId = omi.dataset.id;
+    omiId = Number(omiId);
+    delta.forEach((del) => {
+      let delID = del.dataset.id;
+      delID = Number(delID);
+      omi.addEventListener('focusin', () => {
+        if (omiId === delID) {
+          del.style.display = 'block';
+          del.style.backgroundColor = '#fff';
+          del.childNodes[0].classList.add('del-color');
+        }
+      });
+      omi.addEventListener('focusout', (e) => {
+        if (e.relatedTarget?.classList.contains('del')) {
+          return;
+        }
+        if (omiId === delID) {
+          del.style.display = 'none';
+        }
+      });
+      deleteSingleTask();
+      // eslint-disable-next-line no-use-before-define
+      deleteEverything();
+      change();
     });
   });
 }
@@ -187,7 +201,8 @@ function deleteEverything() {
     loadcheckedData();
     loadCrossed();
     orderingTasks();
-    deleteSingleTask();
+    changeToTrash();
+    changeToMove();
   });
 }
 
