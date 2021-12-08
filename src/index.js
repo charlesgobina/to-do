@@ -105,8 +105,11 @@ function changeToMove() {
           tet.style.display = 'none';
         }
       });
-      omi.addEventListener('focusout', () => {
+      omi.addEventListener('focusout', (e) => {
         if (omiId === tetID) {
+          if (e.relatedTarget?.classList.contains('del')) {
+            return;
+          }
           tet.style.display = 'block';
         }
       });
@@ -139,25 +142,7 @@ function displayTasks() {
   change();
   loadcheckedData();
   loadCrossed();
-  // eslint-disable-next-line no-use-before-define
-  deleteSingleTask();
   tasks.innerHTML = taskHolder;
-}
-
-function deleteSingleTask() {
-  let delta = document.querySelectorAll('#trash');
-  delta = Array.from(delta);
-  for (let i = 0; i < delta.length; i += 1) {
-    let suprimeurId = delta[i].dataset.id;
-    suprimeurId = Number(suprimeurId);
-    delta[i].addEventListener('click', () => {
-      task.deleteSingleItem(suprimeurId);
-      displayTasks();
-      changeToMove();
-      // eslint-disable-next-line no-use-before-define
-      changeToTrash();
-    });
-  }
 }
 
 function changeToTrash() {
@@ -178,18 +163,32 @@ function changeToTrash() {
       });
       omi.addEventListener('focusout', (e) => {
         if (e.relatedTarget?.classList.contains('del')) {
+          // eslint-disable-next-line no-use-before-define
+          deleteSingleTask();
           return;
         }
         if (omiId === delID) {
           del.style.display = 'none';
         }
       });
-      deleteSingleTask();
-      // eslint-disable-next-line no-use-before-define
-      deleteEverything();
-      change();
     });
   });
+}
+
+function deleteSingleTask() {
+  let delta = document.querySelectorAll('#trash');
+  delta = Array.from(delta);
+  for (let i = 0; i < delta.length; i += 1) {
+    let suprimeurId = delta[i].dataset.id;
+    suprimeurId = Number(suprimeurId);
+    delta[i].addEventListener('click', () => {
+      task.deleteSingleItem(suprimeurId);
+      displayTasks();
+      changeToMove();
+      change();
+      changeToTrash();
+    });
+  }
 }
 
 function deleteEverything() {
@@ -232,7 +231,6 @@ function addTask() {
     change();
     loadcheckedData();
     loadCrossed();
-    deleteSingleTask();
     changeToTrash();
     changeToMove();
   });
