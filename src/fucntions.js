@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 class Tasks {
   constructor(index, description, completed) {
     this.index = index;
