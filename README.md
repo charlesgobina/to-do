@@ -52,6 +52,20 @@ npm run build
 npm start
 ```
 
+## Run tests
+* First install the project using the installation guide above.
+* Navigate to the test branch using the command below
+
+```
+git checkout tests
+```
+
+* Run tests using the command below
+
+```
+npm test
+```
+
 ## Authors
 Charles Gobina :student: 
 * Github:https://github.com/charlesgobina 
