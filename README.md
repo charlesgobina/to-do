@@ -13,7 +13,7 @@ To-Do is a web application that allows users
 * Webpack
 
 ## Live Demo
-* [Demo link](https://charlesgobina.github.io/to-do/dist/)
+* [Demo link](https://charlesgobina-todo.netlify.app/)
 
 ## System Requirements
 * Node.JS

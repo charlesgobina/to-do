@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .tasks {
@@ -82,7 +83,8 @@
 
 .i-task #move {
   cursor: move;
-  display: none;
+  display: block;
+  transition: all 0.5s;
 }
 
 .i-task #trash {
@@ -91,6 +93,13 @@
   padding: 5px;
   width: 40px;
   height: 40px;
+  display: none;
+  transition: all 0.5s;
+}
+
+.del-color {
+  color: red;
+  transition: all 0.5s;
 }
 
 .i-task #trash:hover {
